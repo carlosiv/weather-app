@@ -36,7 +36,7 @@ function App() {
   const [weatherData, setWeatherData] = useState<weatherProps>(
     {} as weatherProps
   );
-  const [cities, setCities] = useState(citiesData);
+  const [cities] = useState(citiesData);
   const [cityID, setCityID] = useState("");
   const [city, setCity] = useState("");
 
@@ -90,6 +90,7 @@ function App() {
     if (location.coords) {
       getInitialWeather();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.coords]);
 
   useEffect(() => {
@@ -101,9 +102,15 @@ function App() {
         setWeatherData(response.data);
       });
     }
-  }, [cityID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cityID, location.coords.latitude, location.coords.longitude]);
   const getImage = (icon: string) => {
-    return <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} />;
+    return (
+      <img
+        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+        alt="weather icon"
+      />
+    );
   };
 
   const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (
