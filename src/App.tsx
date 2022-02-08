@@ -103,7 +103,7 @@ function App() {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cityID, location.coords.latitude, location.coords.longitude]);
+  }, [cityID]);
   const getImage = (icon: string) => {
     return (
       <img
