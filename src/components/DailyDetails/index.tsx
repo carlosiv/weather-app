@@ -32,12 +32,11 @@ export const DailyDetails = (props: DailyDetailsProps) => {
 
   useEffect(() => {
     if (param && props.weatherData) {
-      console.log(props.weatherData);
       let dt = props.weatherData.filter((w) => w.dt === param);
       setFilteredData(dt[0]);
     }
   }, [param, props.weatherData]);
-  console.log(filteredData);
+
   return filteredData ? (
     <>
       <WeatherContainer>

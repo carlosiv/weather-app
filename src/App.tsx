@@ -52,7 +52,8 @@ function App() {
   };
 
   const error = (err: errorProps) => {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    //`ERROR(${err.code}): ${err.message}`
+    console.warn("an error occured");
   };
 
   //https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,minutely,alerts&appid={API key}
