@@ -69,7 +69,7 @@ function App() {
       .then(() => {
         axios({
           method: "get",
-          url: `http://api.openweathermap.org/geo/1.0/reverse?lat=${location.coords.latitude.toString()}&lon=${location.coords.longitude.toString()}&units=metric&exclude=hourly,minutely,alerts&appid=${API_KEY}`,
+          url: `https://api.openweathermap.org/geo/1.0/reverse?lat=${location.coords.latitude.toString()}&lon=${location.coords.longitude.toString()}&units=metric&exclude=hourly,minutely,alerts&appid=${API_KEY}`,
         }).then((response) => {
           setCity(response.data[0].name);
         });
