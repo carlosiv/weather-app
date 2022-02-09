@@ -23,6 +23,7 @@ import {
   CardContainerSpan,
   LocationContainer,
   Logo,
+  Spinner,
   WeatherContainer,
   WeatherIconDescriptionContainer,
 } from "./styles/app.styles";
@@ -38,6 +39,7 @@ function App() {
   const [cities] = useState(citiesData);
   const [cityID, setCityID] = useState("");
   const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(true);
 
   //success callback for navigator
   const success = (pos: locationProps) => {
@@ -67,6 +69,7 @@ function App() {
     })
       .then((response) => {
         setWeatherData(response.data);
+        setLoading(false);
       })
       .then(() => {
         axios({
@@ -185,7 +188,10 @@ function App() {
         </>
       );
     } else {
-      return <LocationContainer>No Data</LocationContainer>;
+      return (
+        !loading &&
+        !weatherData && <LocationContainer>No Data</LocationContainer>
+      );
     }
   };
 
@@ -243,12 +249,16 @@ function App() {
         </>
       );
     } else {
-      return <LocationContainer>No Data</LocationContainer>;
+      return (
+        !loading &&
+        !weatherData && <LocationContainer>No Data</LocationContainer>
+      );
     }
   };
   return (
     <>
       <Navbar />
+      {loading && <Spinner />}
       <Routes>
         <Route
           path="/"
@@ -257,6 +267,7 @@ function App() {
               cities={cities}
               displayData={displayCurrentData()}
               handleSelectChange={handleSelectChange}
+              loading={loading}
             />
           }
         />
@@ -267,6 +278,7 @@ function App() {
               cities={cities}
               displayData={displayDailyData()}
               handleSelectChange={handleSelectChange}
+              loading={loading}
             />
           }
         />
