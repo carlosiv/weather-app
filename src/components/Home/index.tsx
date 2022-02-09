@@ -17,7 +17,6 @@ type HomeProps = {
 };
 
 export const Home = (props: HomeProps) => {
-  console.log(props.loading);
   return (
     <>
       {!props.loading && (

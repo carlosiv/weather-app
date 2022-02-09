@@ -111,7 +111,12 @@ function App() {
         setWeatherData(response.data);
       });
     }
-  }, [cityID, location?.coords?.latitude, location?.coords?.longitude]);
+  }, [
+    cityID,
+    location?.coords?.latitude,
+    location?.coords?.longitude,
+    API_KEY,
+  ]);
   const getImage = (icon: string) => {
     return (
       <img
@@ -291,7 +296,7 @@ function App() {
         <Route
           path="*"
           element={
-            <main style={{ padding: "1rem" }}>
+            <main style={{ padding: "1rem", margin: "0 auto" }}>
               <p>There's nothing here!</p>
             </main>
           }
