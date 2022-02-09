@@ -7,6 +7,7 @@ import {
   CardContainer,
   CardContainerContent,
   CardContainerSpan,
+  LocationContainer,
   Logo,
   WeatherContainer,
   WeatherIconDescriptionContainer,
@@ -24,12 +25,14 @@ export const DailyDetails = (props: DailyDetailsProps) => {
   const [param, setParam] = useState(0);
   const [filteredData, setFilteredData] = useState<dailyEntity>();
 
+  //run when param changes
   useEffect(() => {
     if (day) {
       setParam(parseInt(day));
     }
   }, [day]);
 
+  //filter data to display
   useEffect(() => {
     if (param && props.weatherData) {
       let dt = props.weatherData.filter((w) => w.dt === param);
@@ -80,6 +83,6 @@ export const DailyDetails = (props: DailyDetailsProps) => {
       </WeatherContainer>
     </>
   ) : (
-    <div>No available data</div>
+    <LocationContainer>No Data</LocationContainer>
   );
 };
