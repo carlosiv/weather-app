@@ -30,8 +30,7 @@ import { DailyDetails } from "./components/DailyDetails";
 function App() {
   const API_KEY = process.env.REACT_APP_WEATHER_API;
 
-  //using navigator from MDN Docs
-
+  //states
   const [location, setLocation] = useState<locationProps>({} as locationProps);
   const [weatherData, setWeatherData] = useState<weatherProps>(
     {} as weatherProps
@@ -40,6 +39,7 @@ function App() {
   const [cityID, setCityID] = useState("");
   const [city, setCity] = useState("");
 
+  //success callback for navigator
   const success = (pos: locationProps) => {
     let { latitude, longitude } = pos.coords;
 
@@ -50,7 +50,7 @@ function App() {
       },
     });
   };
-
+  //error callback for navigator
   const error = (err: errorProps) => {
     //`ERROR(${err.code}): ${err.message}`
     console.warn("an error occured");
@@ -59,6 +59,7 @@ function App() {
   //https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,minutely,alerts&appid={API key}
   //http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid={API key}
 
+  //get initial weather from current location and get city by reverse geolocation
   const getInitialWeather = () => {
     axios({
       method: "get",
@@ -76,6 +77,8 @@ function App() {
         });
       });
   };
+
+  //run once and get location when user initially views the page
   useEffect(() => {
     if (!("geolocation" in navigator)) {
       error({
@@ -83,10 +86,11 @@ function App() {
         message: "Geolocation not Supported",
       });
     }
-
+    //using navigator from MDN Docs
     navigator.geolocation.getCurrentPosition(success, error);
   }, []);
 
+  //run after coordinates from geolocation is set or changes
   useEffect(() => {
     if (location.coords) {
       getInitialWeather();
@@ -94,6 +98,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.coords]);
 
+  //useEffect for dropdown city lookup
   useEffect(() => {
     if (cityID !== "") {
       axios({
@@ -103,8 +108,7 @@ function App() {
         setWeatherData(response.data);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cityID]);
+  }, [cityID, location?.coords?.latitude, location?.coords?.longitude]);
   const getImage = (icon: string) => {
     return (
       <img
@@ -114,6 +118,7 @@ function App() {
     );
   };
 
+  //handle select dropdown
   const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -128,6 +133,7 @@ function App() {
     });
   };
 
+  //current weather view
   const displayCurrentData = () => {
     if (city) {
       return (
@@ -183,6 +189,7 @@ function App() {
     }
   };
 
+  //daily weather view
   const displayDailyData = () => {
     if (city) {
       return (
