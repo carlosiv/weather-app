@@ -28,6 +28,17 @@ import {
   WeatherIconDescriptionContainer,
 } from "./styles/app.styles";
 import { DailyDetails } from "./components/DailyDetails";
+import { ThemeProvider } from "styled-components";
+import ThemeContext from "./contexts/ThemeContext";
+import useThemeMode from "./hooks/useThemeMode";
+import {
+  dawnTheme,
+  duskTheme,
+  middayTheme,
+  morningTheme,
+  nightTheme,
+} from "./styles/themes";
+import GlobalStyle from "./styles/GlobalStyle";
 function App() {
   const API_KEY = process.env.REACT_APP_WEATHER_API;
 
@@ -40,6 +51,31 @@ function App() {
   const [cityID, setCityID] = useState("");
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState(true);
+  const [mode, setMode] = useState({});
+  const { theme } = useThemeMode();
+
+  useEffect(() => {
+    switch (theme) {
+      case "night":
+        setMode(nightTheme);
+        break;
+      case "morning":
+        setMode(morningTheme);
+        break;
+      case "midday":
+        setMode(middayTheme);
+        break;
+      case "dusk":
+        setMode(duskTheme);
+        break;
+      case "dawn":
+        setMode(dawnTheme);
+        break;
+      default:
+        setMode(morningTheme);
+        break;
+    }
+  }, [theme]);
 
   //success callback for navigator
   const success = (pos: locationProps) => {
@@ -260,49 +296,57 @@ function App() {
       );
     }
   };
+
   return (
-    <>
-      <Navbar />
-      {loading && <Spinner />}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              cities={cities}
-              displayData={displayCurrentData()}
-              handleSelectChange={handleSelectChange}
-              loading={loading}
-            />
-          }
-        />
-        <Route
-          path="daily"
-          element={
-            <Daily
-              cities={cities}
-              displayData={displayDailyData()}
-              handleSelectChange={handleSelectChange}
-              loading={loading}
-            />
-          }
-        />
-        <Route
-          path="/daily/:day"
-          element={
-            <DailyDetails weatherData={weatherData.daily} getImage={getImage} />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: "1rem", margin: "0 auto" }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
-      </Routes>
-    </>
+    <ThemeContext>
+      <ThemeProvider theme={mode}>
+        <GlobalStyle />
+        <Navbar />
+        {loading && <Spinner />}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                cities={cities}
+                displayData={displayCurrentData()}
+                handleSelectChange={handleSelectChange}
+                loading={loading}
+              />
+            }
+          />
+          <Route
+            path="daily"
+            element={
+              <Daily
+                cities={cities}
+                displayData={displayDailyData()}
+                handleSelectChange={handleSelectChange}
+                loading={loading}
+              />
+            }
+          />
+
+          <Route
+            path="/daily/:day"
+            element={
+              <DailyDetails
+                weatherData={weatherData.daily}
+                getImage={getImage}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem", margin: "0 auto" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </ThemeProvider>
+    </ThemeContext>
   );
 }
 
