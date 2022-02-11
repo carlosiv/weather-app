@@ -31,7 +31,7 @@ export type dailyEntity = {
   sunset: number;
   moonrise: number;
   moonset: number;
-  temp: dailyTemp[];
+  temp: dailyTemp;
   feels_like: dailyFeels[];
   pressure: number;
   humidity: number;
