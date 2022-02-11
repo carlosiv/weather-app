@@ -50,6 +50,7 @@ function App() {
   const [cities] = useState(citiesData);
   const [cityID, setCityID] = useState("");
   const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState({});
   const { theme } = useThemeMode();
@@ -113,6 +114,7 @@ function App() {
           url: `https://api.openweathermap.org/geo/1.0/reverse?lat=${location.coords.latitude.toString()}&lon=${location.coords.longitude.toString()}&units=metric&exclude=hourly,minutely,alerts&appid=${API_KEY}`,
         }).then((response) => {
           setCity(response.data[0].name);
+          setCountry(response.data[0].country);
         });
       });
   };
@@ -301,20 +303,23 @@ function App() {
     <ThemeContext>
       <ThemeProvider theme={mode}>
         <GlobalStyle />
-        <Navbar />
+
         {loading && <Spinner />}
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                cities={cities}
-                displayData={displayCurrentData()}
-                handleSelectChange={handleSelectChange}
-                loading={loading}
-              />
-            }
-          />
+          {!loading && (
+            <Route
+              path="/"
+              element={
+                <Home
+                  weatherData={weatherData}
+                  city={city}
+                  country={country}
+                  cities={cities}
+                  handleSelectChange={handleSelectChange}
+                />
+              }
+            />
+          )}
           <Route
             path="daily"
             element={
@@ -328,7 +333,7 @@ function App() {
           />
 
           <Route
-            path="/daily/:day"
+            path="/day/:day"
             element={
               <DailyDetails
                 weatherData={weatherData.daily}
@@ -340,7 +345,7 @@ function App() {
             path="*"
             element={
               <main style={{ padding: "1rem", margin: "0 auto" }}>
-                <p>There's nothing here!</p>
+                {!loading && <p>There's nothing here!</p>}
               </main>
             }
           />
