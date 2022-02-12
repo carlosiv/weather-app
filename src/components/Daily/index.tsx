@@ -31,7 +31,8 @@ import {
   WeatherWeekListContainer,
   WeatherWeekListContentContainer,
 } from "../styles";
-import { WeatherTempIconContainer } from "./styles";
+import { BackButton, WeatherTempIconContainer } from "./styles";
+import { Link } from "react-router-dom";
 
 type DailyDetailsProps = {
   weatherData: dailyEntity[];
@@ -203,6 +204,7 @@ export const Daily = (props: DailyDetailsProps) => {
           </WeatherInfoSideContainer>
         </WeatherAppContainer>
       )}
+      <BackButton href="/">Home</BackButton>
     </>
   );
 };
