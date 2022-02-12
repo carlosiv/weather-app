@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { useParams } from "react-router-dom";
-import { dailyEntity, weatherProps } from "../../types/weather.types";
+import { dailyEntity } from "../../types/weather.types";
 import pin from "../../assets/pin.png";
 import temperatureIcon from "../../assets/temperature.png";
 
@@ -24,15 +24,12 @@ import {
   WeatherInfoTodayValueContainer,
   WeatherListDayNameContainer,
   WeatherListDayTempContainer,
-  WeatherListIconContainer,
-  WeatherLocationFinderContainer,
   WeatherSideContainer,
   WeatherWeekContainer,
   WeatherWeekListContainer,
   WeatherWeekListContentContainer,
 } from "../styles";
 import { BackButton, WeatherTempIconContainer } from "./styles";
-import { Link } from "react-router-dom";
 
 type DailyDetailsProps = {
   weatherData: dailyEntity[];
