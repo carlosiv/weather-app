@@ -31,6 +31,7 @@ export type dailyEntity = {
   sunset: number;
   moonrise: number;
   moonset: number;
+  moon_phase: number;
   temp: dailyTemp;
   feels_like: dailyFeels[];
   pressure: number;
@@ -38,6 +39,7 @@ export type dailyEntity = {
   dew_point: number;
   uvi: number;
   clouds: number;
+  rain: number;
   pop: number;
   wind_speed: number;
   wind_deg: number;

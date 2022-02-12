@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ThemeProps } from "../../styles/themes";
+import { ThemeProps } from "../styles/themes";
 
 type GlobalThemeProps = {
   theme: ThemeProps;
