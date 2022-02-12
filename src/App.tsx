@@ -21,6 +21,9 @@ import {
   CardContainer,
   CardContainerContent,
   CardContainerSpan,
+  HeaderContainer,
+  HeaderSubtitle,
+  HeaderTitle,
   LocationContainer,
   Logo,
   Spinner,
@@ -305,6 +308,17 @@ function App() {
         <GlobalStyle />
 
         {loading && <Spinner />}
+        {!loading && (
+          <HeaderContainer>
+            <HeaderTitle>Local Weather App</HeaderTitle>
+            <HeaderSubtitle
+              href="https://www.openweathermap.org"
+              target="_blank"
+            >
+              www.openweathermap.org
+            </HeaderSubtitle>
+          </HeaderContainer>
+        )}
         <Routes>
           {!loading && (
             <Route

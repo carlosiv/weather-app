@@ -75,3 +75,20 @@ export const Spinner = styled.div`
   border-radius: 50%;
   margin: 0 auto;
 `;
+
+export const HeaderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+`;
+
+export const HeaderTitle = styled.h1`
+  text-align: center;
+`;
+
+export const HeaderSubtitle = styled.a`
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+`;
