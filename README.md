@@ -1,46 +1,22 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App Typescript](https://github.com/facebook/create-react-app) & [Styled Components](https://github.com/styled-components/styled-components).
 
-## Available Scripts
+## What this App can do
 
-In the project directory, you can run:
+1. At initial load, gets the current location of the user and loads the data
+2. The user can toggle dropdown to change location. (Local location only)
+3. The user can view 5 weather days.
+4. The user view a certain weather of a given day
+5. The background of the app changes according to the time it is opened.
 
-### `npm start`
+## What this App is not. (TODO)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- App is not yet suited for viewing on small screens
+- No catch route for invalid routes
+- Location is limited to PH and cannot use outside the list
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Inspiration/References
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Design is from the PUG design of [Local Weather App - openweather API](https://codepen.io/wearegroot/pen/pgaeWL) converted to Styled Components.
+- Theming is from [Vinicius Dias](https://dev.to/viniciusmdias/how-to-create-a-theme-in-react-typescript-with-styled-components-3fn)
