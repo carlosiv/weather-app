@@ -33,7 +33,7 @@ import {
   WeatherWeekContainer,
   WeatherWeekListContainer,
   WeatherWeekListContentContainer,
-} from "./styles";
+} from "../styles";
 
 type HomeProps = {
   weatherData: weatherProps;
