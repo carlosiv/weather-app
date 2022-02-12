@@ -320,27 +320,20 @@ function App() {
               }
             />
           )}
-          <Route
-            path="daily"
-            element={
-              <Daily
-                cities={cities}
-                displayData={displayDailyData()}
-                handleSelectChange={handleSelectChange}
-                loading={loading}
-              />
-            }
-          />
 
-          <Route
-            path="/day/:day"
-            element={
-              <DailyDetails
-                weatherData={weatherData.daily}
-                getImage={getImage}
-              />
-            }
-          />
+          {!loading && (
+            <Route
+              path="/day/:day"
+              element={
+                <Daily
+                  weatherData={weatherData.daily}
+                  city={city}
+                  country={country}
+                />
+              }
+            />
+          )}
+
           <Route
             path="*"
             element={
