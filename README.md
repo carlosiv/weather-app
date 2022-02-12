@@ -4,13 +4,13 @@ This project was bootstrapped with [Create React App Typescript](https://github.
 
 ## What this App can do
 
-1. At initial load, gets the current location of the user and load the data
+1. At initial load, gets the current location of the user and loads the data
 2. The user can toggle dropdown to change location. (Local location only)
 3. The user can view 5 weather days.
 4. The user view a certain weather of a given day
 5. The background of the app changes according to the time it is opened.
 
-## What this App not. (TODO)
+## What this App is not. (TODO)
 
 - App is not yet suited for viewing on small screens
 - No catch route for invalid routes
