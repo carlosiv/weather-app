@@ -105,7 +105,7 @@ export const WeatherInfoTodayContainer = styled.div`
   padding: 15px;
   margin: 0 25px 25px 25px;
   border-radius: 10px;
-
+  color: white;
   & div:not(:last-child) {
     margin: 0 0 10px 0;
   }
@@ -130,6 +130,7 @@ export const WeatherWeekListContainer = styled.ul`
   margin: 10px 35px;
   box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  background: darkslateblue;
 `;
 
 export const WeatherWeekListContentContainer = styled.li`
